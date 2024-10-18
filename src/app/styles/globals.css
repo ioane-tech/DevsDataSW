@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #040404;
+  --foreground: #f03c3c;
+}
+
+/* scrollbar styles*/
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background-color: red; 
+  border-radius: 10px;
+}
+
+
+body {
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .image_container{
+    @apply relative w-96 ml-auto mr-auto
+  }
+  .star_wars_image{
+    @apply w-full h-full bg-cover relative top-0 left-0;
+  }
+  .stars_image{
+    @apply  w-full absolute top-10 rounded-full -z-10 
+  }
+}
+
+
+

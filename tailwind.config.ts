@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        mainRed: "rgb(240, 60, 60)",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
