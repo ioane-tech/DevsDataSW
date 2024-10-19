@@ -3,6 +3,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { PeopleResponse } from '../types'
+import { toast } from 'react-toastify'
 
 
 function useFetchPeople(apiUrl:any) {
@@ -18,7 +19,7 @@ function useFetchPeople(apiUrl:any) {
                 setPeopleDataLoading(false)
             }
         }catch(err){
-            console.error(err)
+            toast.error('failed fetching people! refresh page!')
             setPeopleDataLoading(false)
         }
         

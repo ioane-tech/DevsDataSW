@@ -18,8 +18,6 @@ import FetchSpecies from './fetchMethods/FetchSpecies';
 import FetchVehicles from './fetchMethods/FetchVehicles';
 import FetchStarships from './fetchMethods/FetchStarships';
 import { useSearch } from '../context/searchContext';
-
-import { toast } from 'react-toastify';
 import { useFetchAllPeople } from '../hooks/useFetchAllPeople';
 
 
