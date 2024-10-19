@@ -39,6 +39,10 @@ body {
   .stars_image{
     @apply  w-full absolute top-10 rounded-full -z-10 
   }
+
+  .arrows{
+    @apply absolute bg-white text-red-500 w-10 h-10 text-2xl border-2 rounded-full p-2 hover:bg-black transition duration-300;
+  }
 }
 
 

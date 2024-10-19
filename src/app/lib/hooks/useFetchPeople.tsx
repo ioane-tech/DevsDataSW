@@ -9,10 +9,10 @@ function useFetchPeople(apiUrl:any) {
     const [peopleData, setPeopleData] = useState<PeopleResponse>()
     const [peopleDataLoading, setPeopleDataLoading] = useState(false)
 
-    const FetchData = (async()=>{
+    const FetchPeopleData = (async()=>{
+        setPeopleDataLoading(true)
         try{
             const response = await axios.get(apiUrl)
-            setPeopleDataLoading(true)
             if(response.status === 200){
                 setPeopleData(response.data)
                 setPeopleDataLoading(false)
@@ -26,12 +26,12 @@ function useFetchPeople(apiUrl:any) {
 
     useEffect(()=>{
         if(apiUrl){
-            FetchData()
+            FetchPeopleData()
         }
     },[apiUrl])
     
     console.log(peopleData)
-    return {peopleData, peopleDataLoading, FetchData}
+    return {peopleData, peopleDataLoading, FetchPeopleData}
 }
 
 export default useFetchPeople

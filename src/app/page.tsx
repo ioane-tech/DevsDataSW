@@ -1,7 +1,4 @@
 
-//react icons
-
-
 //components
 import BgImage from '@/app/lib/Components/BgImage'
 import SearchInput from '@/app/lib/Components/SearchInput'

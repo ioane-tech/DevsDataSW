@@ -4,6 +4,10 @@ import React, { useEffect, useState } from 'react'
 import useFetchPeople from '../hooks/useFetchPeople'
 import { Person } from '../types'
 
+//icons
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import Loading from './Loading';
+
 function CharactersRenderer() {
     //states
     const [page, setPage] = useState(1)
@@ -14,10 +18,13 @@ function CharactersRenderer() {
     const [showMore, setShowMore] = useState(false)
 
     //hooks
-    const {peopleData, FetchData} = useFetchPeople(apiUrl)
+    const {peopleData, peopleDataLoading, FetchPeopleData} = useFetchPeople(apiUrl)
 
 
-
+    //api url changer
+    useEffect(()=>{
+        setApiUrl(`https://swapi.dev/api/people/?page=${page}`)
+    },[page])
 
     //popup handlers
     const handleCardClick = (person:any) => {
@@ -29,10 +36,20 @@ function CharactersRenderer() {
         setPerson(null)
         setShowMore(false) 
     }
+
+    //arrow handlers
+    const nextHandler = () => {
+        setPage((prev) => prev + 1)
+    }
+    const backHandler = () => {
+        setPage((prev) => prev - 1)
+    }
+
+    
   return (
     <div>
-        {/* people names */}
-       <div className="flex flex-wrap justify-center gap-4 mb-10 mt-10 ml-auto mr-auto w-2/3 border border-gray-400 p-10">
+        {/* characters names */}
+       <div className="flex flex-wrap relative justify-center gap-4 mb-10 mt-10 ml-auto mr-auto  p-10 w-2/3 border border-gray-400 rounded">
             {peopleData?.results.map((person) => (
                 <div
                     key={person.name}
@@ -44,7 +61,23 @@ function CharactersRenderer() {
                 </div>
             ))}
 
+            {/* next & prev buttons */}
+            <>
+                <FaArrowLeft 
+                    onClick={peopleData?.previous ? backHandler : undefined} 
+                    className={peopleData?.previous? 'arrows -left-5 top-1/3 cursor-pointer ' : 'arrows -left-5 top-1/3 cursor-not-allowed'}
+                />
+                <FaArrowRight 
+                    onClick={peopleData?.next ? nextHandler : undefined} 
+                    className={peopleData?.next? 'arrows -right-5 top-1/3 cursor-pointer' : 'arrows -right-5 top-1/3 cursor-not-allowed'}
+                />
+            </>
 
+            {/* show loading */}
+            {
+                peopleDataLoading &&
+                <Loading/>
+            }
 
         </div>
 
@@ -83,12 +116,21 @@ function CharactersRenderer() {
                         )}
                     </div>
                     {/* Show More button */}
-                    <div
-                        className="w-fit ml-auto mr-auto mt-6 py-2 px-10 border border-black bg-red-500 rounded text-black text-base hover:scale-110 hover:border-red-500 hover:bg-black hover:text-red-500 transition duration-200 cursor-pointer"
-                        onClick={() => setShowMore(true)}
-                    >
-                        {showMore? '' : 'Show More'}
-                    </div>
+                    {
+                        showMore?
+                        (
+                            <></>
+                        )
+                        :
+                        (
+                            <div
+                                className="w-fit ml-auto mr-auto mt-6 py-2 px-10 border border-black bg-red-500 rounded text-black text-base hover:scale-110 hover:border-red-500 hover:bg-black hover:text-red-500 transition duration-200 cursor-pointer"
+                                onClick={() => setShowMore(true)}
+                            >
+                                Show More
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         )}
