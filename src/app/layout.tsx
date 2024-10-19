@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+
+//styles
 import "@/app/styles/globals.css";
+import 'react-toastify/dist/ReactToastify.css';
+
+import { ToastContainer } from "react-toastify";
+import { SearchProvider } from "./lib/context/searchContext";
 
 
 export const metadata: Metadata = {
@@ -21,7 +26,10 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-        {children}
+        <SearchProvider>
+          <ToastContainer/>
+          {children}
+        </SearchProvider>
       </body>
     </html>
   );

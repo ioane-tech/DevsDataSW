@@ -16,7 +16,7 @@
   background: transparent; 
 }
 ::-webkit-scrollbar-thumb {
-  background-color: red; 
+  background-color: rgb(255, 87, 87); 
   border-radius: 10px;
 }
 
@@ -42,6 +42,10 @@ body {
 
   .arrows{
     @apply absolute bg-white text-red-500 w-10 h-10 text-2xl border-2 rounded-full p-2 hover:bg-black transition duration-300;
+  }
+
+  .loading_icon{
+    @apply animate-spin
   }
 }
 

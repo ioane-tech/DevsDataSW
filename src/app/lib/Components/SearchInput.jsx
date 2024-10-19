@@ -4,14 +4,16 @@ import React, { useState } from 'react'
 
 //react icons
 import { FaSearch } from "react-icons/fa";
+import { useSearch } from '../context/searchContext';
 
 
 function SearchInput() {
-  const [searchInput, setSearchInput] = useState('')
+  const {setSearchInput} = useSearch()
+  const [localSearch, setLocalSearch] = useState('')
 
   //search handler
   const searchHandleClick = () => {
-
+    setSearchInput(localSearch)
   }
   return (
     <div className="ml-auto mr-auto w-fit flex gap-4 items-center relative">
@@ -20,6 +22,7 @@ function SearchInput() {
         type="text" 
         name="search" 
         placeholder="Search by name..."
+        onChange={(e)=> setLocalSearch(e.target.value)}
       />
       <FaSearch
         onClick={searchHandleClick}

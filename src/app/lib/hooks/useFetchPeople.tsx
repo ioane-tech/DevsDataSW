@@ -30,7 +30,6 @@ function useFetchPeople(apiUrl:any) {
         }
     },[apiUrl])
     
-    console.log(peopleData)
     return {peopleData, peopleDataLoading, FetchPeopleData}
 }
 
